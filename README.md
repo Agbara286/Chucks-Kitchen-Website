@@ -49,36 +49,26 @@ src/
 
 
 
----
+## 💻 Getting Started
 
-Clone the repository:
+To run this project locally, ensure you have Node.js installed on your machine.
 
-
-git clone [https://github.com/yourusername/chuks-kitchen.git](https://github.com/yourusername/chuks-kitchen.git)
-Navigate to the project directory:
-
-
-cd chuks-kitchen
-Install dependencies:
-npm install
-Start the development server:
-npm run dev
+1. **Quick Start Setup:**
+   Copy and run these commands in your terminal to clone the project, install dependencies, and start the local server all at once:
+   ```bash
+   git clone [https://github.com/Agbara286/chuks-kitchen.git](https://github.com/Agbara286/chuks-kitchen.git)
+   cd chuks-kitchen
+   npm install
+   npm run dev
 
 
-------
-
-
-🔮 Future Roadmap
+##🔮 Future Roadmap
 While currently a static frontend, the architecture is designed to be easily integrated with a backend service. Future iterations will include:
 
-Integration with a backend API (e.g., Node.js or Go/Gin) for real-time menu fetching.
+Backend Integration: Connecting to a RESTful API (e.g., Node.js or Go/Gin) for real-time menu fetching and user authentication.
 
-Implementation of global state management (Redux or Context API) for a persistent shopping cart.
+State Management: Implementation of global state management (Redux or Context API) for a persistent, cross-page shopping cart.
 
-Real-world payment gateway integration (e.g., Paystack or Flutterwave).
+Payment Gateway: Real-world payment gateway integration (e.g., Paystack or Flutterwave) for actual transaction processing.
 
-
-
-----
-
-
+---
