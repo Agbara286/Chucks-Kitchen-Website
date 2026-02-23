@@ -24,7 +24,9 @@ const PaymentPage: React.FC = () => {
           <button onClick={() => navigate('/orders')} className="hover:text-orange-500 transition">My Orders</button>
           <button className="hover:text-orange-500 transition">Account</button>
         </div>
-        <button className="bg-orange-500 text-white px-8 py-2.5 rounded-lg font-bold hover:bg-orange-600 transition shadow-sm text-sm">
+        <button 
+        onClick={() => navigate('/signin')}
+        className="bg-orange-500 text-white px-8 py-2.5 rounded-lg font-bold hover:bg-orange-600 transition shadow-sm text-sm">
           Login
         </button>
       </nav>

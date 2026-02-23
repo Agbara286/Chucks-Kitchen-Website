@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import { ArrowUp } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const OrderSummaryPage: React.FC = () => {
   const navigate = useNavigate();
-  // State to handle the toggle between Delivery and Pickup
+
   const [deliveryType, setDeliveryType] = useState<'delivery' | 'pickup'>('delivery');
 
   return (
     <div className="bg-[#F9F9F9] min-h-screen flex flex-col font-sans">
       
-      {/* 1. HEADER / NAVBAR*/}
+      {/*  NAVBAR*/}
       <nav className="bg-white px-8 py-5 flex justify-between items-center sticky top-0 z-50 shadow-sm">
         <h1 
           className="text-2xl font-serif italic text-orange-500 font-bold cursor-pointer"
@@ -24,12 +25,14 @@ const OrderSummaryPage: React.FC = () => {
           <button onClick={() => navigate('/orders')} className="text-orange-500 font-bold">My Orders</button>
           <button onClick={() => navigate('/account')}  className="hover:text-orange-500 transition">Account</button>
         </div>
-        <button className="bg-orange-500 text-white px-8 py-2.5 rounded-lg font-bold hover:bg-orange-600 transition shadow-sm text-sm">
+        <button 
+        onClick={() => navigate('/signin')}
+        className="bg-orange-500 text-white px-8 py-2.5 rounded-lg font-bold hover:bg-orange-600 transition shadow-sm text-sm">
           Login
         </button>
       </nav>
 
-      {/* 2. MAIN CONTENT */}
+      {/*MAIN CONTENT */}
       <main className="flex-grow flex justify-center py-12 px-4">
         <div className="bg-white w-full max-w-2xl p-8 md:p-10 rounded-xl shadow-sm border border-gray-100 h-fit">
           
@@ -38,17 +41,17 @@ const OrderSummaryPage: React.FC = () => {
           {/* Promo Code Section */}
           <div className="mb-8">
             <label className="block text-lg font-medium text-gray-900 mb-3">Add a Promo Code</label>
-            <div className="flex gap-4">
-              <input 
-                type="text" 
-                placeholder="Enter Code here" 
-                className="flex-grow border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-orange-500"
-              />
-              <button className="bg-orange-500 text-white px-8 py-3 rounded-lg font-bold hover:bg-orange-600 transition">
-                Apply
-              </button>
-            </div>
-          </div>
+            <div className="flex gap-3">
+             <input 
+              type="text" 
+              placeholder="Enter Code here" 
+              className="flex-grow w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-orange-500"
+               />
+                <button className="flex-shrink-0 bg-orange-500 text-white px-6 md:px-8 py-3 rounded-lg font-bold hover:bg-orange-600 transition">
+                   Apply
+                     </button>
+                  </div>
+                </div>
 
           {/* Cost Breakdown */}
           <div className="space-y-4 mb-6 border-b border-gray-100 pb-6 text-gray-600">
@@ -123,56 +126,64 @@ const OrderSummaryPage: React.FC = () => {
       </main>
 
       {/* 3. FOOTER  */}
-      <footer className="w-full bg-[#5C4033] text-white py-16 px-8">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
-          
-          {/* Brand */}
-          <div className="space-y-4">
-            <h4 className="text-xl font-serif italic text-orange-400">Chuks Kitchen</h4>
-            <p className="text-sm text-gray-300 leading-relaxed">
-              Bringing the authentic flavors of Nigerian home cooking to your table, with passion and care.
-            </p>
-            <p className="text-xs text-gray-400 pt-10">© 2020 Lift Media. All rights reserved.</p>
-          </div>
-          
-          {/* Quick Links */}
-          <div className="flex flex-col space-y-3">
-            <h4 className="font-bold text-lg mb-1">Quick Links</h4>
-            <a href="#" className="text-sm text-gray-300 hover:text-orange-400">Home</a>
-            <a href="#" className="text-sm text-gray-300 hover:text-orange-400">Explore</a>
-            <a href="#" className="text-sm text-gray-300 hover:text-orange-400">My Order</a>
-            <a href="#" className="text-sm text-gray-300 hover:text-orange-400">Account</a>
-            <a href="#" className="text-sm text-gray-300 hover:text-orange-400">Contact</a>
-          </div>
+     <footer className="w-full bg-[#5C4033] text-white pt-16 pb-8 px-8 md:px-16 lg:px-24 mt-auto">
+  <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
+    
+    {/* Brand Info */}
+    <div className="space-y-4">
+      <h3 className="text-2xl font-serif italic text-orange-400">Chuks Kitchen</h3>
+      <p className="text-gray-300 text-sm leading-relaxed">
+        Bringing the authentic flavors of Nigerian home cooking to your table, with passion and care.
+      </p>
+      <p className="text-xs text-gray-400 mt-6 pt-4 border-t border-white/10">
+        © 2024 UI Media. All rights reserved.
+      </p>
+    </div>
 
-          {/* Contact Us */}
-          <div className="flex flex-col space-y-3">
-            <h4 className="font-bold text-lg mb-1">Contact Us</h4>
-            <p className="text-sm text-gray-300">+234 801 234 5678</p>
-            <p className="text-sm text-gray-300">hello@chukskitchen.com</p>
-            <p className="text-sm text-gray-300">123 Taste Blvd, Lagos, Nigeria</p>
-          </div>
+    {/* Quick Links */}
+    <div className="space-y-4">
+      <h4 className="font-bold text-lg">Quick Links</h4>
+      <ul className="space-y-2 text-gray-300 text-sm">
+        <li><Link to="/" className="hover:text-orange-400 transition">Home</Link></li>
+        <li><Link to="/explore" className="hover:text-orange-400 transition">Explore</Link></li>
+        <li><Link to="/orders" className="hover:text-orange-400 transition">My Order</Link></li>
+        <li><Link to="/account" className="hover:text-orange-400 transition">Account</Link></li>
+        <li><a href="#" className="hover:text-orange-400 transition">Contact</a></li>
+      </ul>
+    </div>
 
-          {/* Socials */}
-          <div className="flex flex-col space-y-3">
-            <div className="h-6"></div> 
-            <a href="#" className="text-sm text-gray-300 hover:text-orange-400">Facebook</a>
-            <a href="#" className="text-sm text-gray-300 hover:text-orange-400">Twitter</a>
-            <a href="#" className="text-sm text-gray-300 hover:text-orange-400">Linkedin</a>
-            <a href="#" className="text-sm text-gray-300 hover:text-orange-400">Instagram</a>
-          </div>
-        </div>
-        
-        {/* Scroll Top Button */}
-        <div className="flex justify-end mt-10">
-          <button 
-            onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}
-            className="bg-blue-500 p-3 rounded-full hover:bg-blue-600 transition shadow-lg"
-          >
-            <ArrowUp size={24} className="text-white" />
-          </button>
-        </div>
-      </footer>
+    {/* Contact */}
+    <div className="space-y-4">
+      <h4 className="font-bold text-lg">Contact Us</h4>
+      <ul className="space-y-2 text-gray-300 text-sm">
+        <li>+234 811 234 5678</li>
+        <li>hello@chukskitchen.com</li>
+        <li>123 Taste Blvd, Lagos, Nigeria</li>
+      </ul>
+    </div>
+
+    {/* Socials */}
+    <div className="space-y-4">
+      <h4 className="font-bold text-lg">Follow Us</h4>
+      <ul className="space-y-2 text-blue-300 text-sm">
+        <li><a href="#" className="hover:text-orange-400 transition">Facebook</a></li>
+        <li><a href="#" className="hover:text-orange-400 transition">Twitter</a></li>
+        <li><a href="#" className="hover:text-orange-400 transition">LinkedIn</a></li>
+        <li><a href="#" className="hover:text-orange-400 transition">Instagram</a></li>
+      </ul>
+    </div>
+  </div>
+
+  {/* Scroll to Top */}
+  <div className="flex justify-end mt-12">
+    <button 
+      onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+      className="bg-blue-500 p-3 rounded-full hover:bg-blue-600 transition shadow-lg"
+    >
+      <ArrowUp size={24} className="text-white" />
+    </button>
+  </div>
+</footer>
     </div>
   );
 };

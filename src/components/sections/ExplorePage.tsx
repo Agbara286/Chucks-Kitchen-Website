@@ -1,9 +1,10 @@
-import React from 'react';
-import { Search, ShoppingCart, Menu } from 'lucide-react';
+import React , {useState}from 'react';
+import { Search, ShoppingCart, Menu , X} from 'lucide-react';
 import { useNavigate, Link } from 'react-router-dom'; 
 
 const ExplorePage: React.FC = () => {
   const navigate = useNavigate();
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   // Static Categories
   const categories = [
@@ -28,43 +29,68 @@ const ExplorePage: React.FC = () => {
   return (
     <div className="bg-[#FDFDFD] min-h-screen font-sans">
       
-      {/*  NAVBAR */}
-      <nav className="flex justify-between items-center px-6 py-4 bg-white shadow-sm sticky top-0 z-50">
-        <h1 
-          className="text-xl font-serif italic text-orange-600 font-bold cursor-pointer"
-          onClick={() => navigate('/')} 
-        >
-          Chuks Kitchen
-        </h1>
-        
-        {/* Desktop Links */}
-        <div className="hidden md:flex space-x-8 font-medium text-gray-600">
-          <Link to="/" className="hover:text-orange-600 transition">Home</Link> 
-          <Link to="/explore" className="text-orange-600 border-b-2 border-orange-600 pb-1">Explore</Link>
-          <Link to="/orders" className="hover:text-orange-600 transition">Orders</Link>
-          <Link to="/account" className="hover:text-orange-600 transition">Account</Link>
-        </div>
-
-        {/* Icons & Login */}
-        <div className="flex items-center space-x-4">
-          <ShoppingCart 
-            className="text-gray-600 cursor-pointer hover:text-orange-600 transition" 
-            onClick={() => navigate('/orders')} 
-          />
-          
-          <div className="bg-orange-500 p-2 rounded-full text-white md:hidden cursor-pointer">
-            <Menu size={20} />
-          </div>
-          
-          <button 
-            onClick={() => navigate('/signin')} 
-            className="hidden md:block bg-orange-500 text-white px-6 py-2 rounded-lg font-bold hover:bg-orange-600 transition"
+      
+      {/* NAVBAR */}
+      <nav className="flex flex-col bg-white shadow-sm sticky top-0 z-50">
+        <div className="flex justify-between items-center px-6 py-4 w-full">
+          <h1 
+            className="text-xl font-serif italic text-orange-600 font-bold cursor-pointer"
+            onClick={() => navigate('/')} 
           >
-            Login
-          </button>
-        </div>
-      </nav>
+            Chuks Kitchen
+          </h1>
+          
+          {/* Desktop Links */}
+          <div className="hidden md:flex space-x-8 font-medium text-gray-600">
+            <Link to="/" className="hover:text-orange-600 transition">Home</Link> 
+            <Link to="/explore" className="text-orange-600 border-b-2 border-orange-600 pb-1">Explore</Link>
+            <Link to="/orders" className="hover:text-orange-600 transition">Orders</Link>
+            <Link to="/account" className="hover:text-orange-600 transition">Account</Link>
+          </div>
 
+          {/* Icons & Login */}
+          <div className="flex items-center space-x-4">
+            <ShoppingCart 
+              className="text-gray-600 cursor-pointer hover:text-orange-600 transition" 
+              onClick={() => navigate('/orders')} 
+            />
+            
+            {/*  Toggle Button */}
+            <div 
+              className="bg-orange-500 p-2 rounded-full text-white md:hidden cursor-pointer transition-transform duration-200"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
+            </div>
+            
+            <button 
+              onClick={() => navigate('/signin')} 
+              className="hidden md:block bg-orange-500 text-white px-6 py-2 rounded-lg font-bold hover:bg-orange-600 transition"
+            >
+              Login
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Dropdown Menu */}
+        {isMenuOpen && (
+          <div className="md:hidden bg-white border-t border-gray-100 px-6 py-4 flex flex-col space-y-4 shadow-md absolute top-full w-full left-0">
+            <Link to="/" onClick={() => setIsMenuOpen(false)} className="text-gray-600 hover:text-orange-600 font-medium">Home</Link>
+            <Link to="/explore" onClick={() => setIsMenuOpen(false)} className="text-orange-600 font-medium">Explore</Link>
+            <Link to="/orders" onClick={() => setIsMenuOpen(false)} className="text-gray-600 hover:text-orange-600 font-medium">Orders</Link>
+            <Link to="/account" onClick={() => setIsMenuOpen(false)} className="text-gray-600 hover:text-orange-600 font-medium">Account</Link>
+            <button 
+              onClick={() => {
+                setIsMenuOpen(false);
+                navigate('/signin');
+              }} 
+              className="bg-orange-500 text-white px-6 py-3 rounded-lg font-bold hover:bg-orange-600 transition w-full text-center"
+            >
+              Login
+            </button>
+          </div>
+        )}
+      </nav>
       {/* HERO SECTION */}
       <header className="relative h-[450px] flex items-center justify-center">
         <div className="absolute inset-0 bg-black/40 z-10" />

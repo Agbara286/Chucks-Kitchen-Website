@@ -122,8 +122,8 @@ const SignUpPage: React.FC = () => {
                  Continue with Google
               </button>
               <button className="w-full flex items-center justify-center px-4 py-3 border border-gray-300 rounded-lg shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">
-                <img className="h-5 w-5 mr-2" src="https://www.svgrepo.com/show/448234/facebook.svg" alt="Facebook" />
-                Continue with Apple
+                <img className="h-5 w-5 mr-2" src="https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg" alt="Facebook" />
+                Continue with Facebook
               </button>
             </div>
 
